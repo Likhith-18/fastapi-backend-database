@@ -17,8 +17,8 @@ class Document(BaseModel):
 
 @extract_router.get("/")
 async def get_todos():
-    todos = list_serialise(collection_name.find())
-    return todos
+    # todos = list_serialise(collection_name.find())
+    # return todos
     return {"msg": "this is export route"}
 
 
@@ -29,9 +29,9 @@ async def post_todo(document: Document):
 
 
 @extract_router.put("/{id}")
-async def put_todo(id: str, todo: Todo):
+async def put_todo(id: str, document: Document):
     collection_name.find_one_and_update(
-        {"_id": ObjectId(id)}, {"$set": dict(todo)})
+        {"_id": ObjectId(id)}, {"$set": dict(document)})
 
 
 @extract_router.delete("/{id}/")
